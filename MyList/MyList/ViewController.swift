@@ -9,7 +9,9 @@
 import UIKit
 import Alamofire
 
-class ViewController: UIViewController {
+class ViewController: UIViewController,UITableViewDataSource {
+    @IBOutlet weak var tableView: UITableView!
+    var list:[String] = ["Michael","James", "Allen"]
     override func viewDidLoad() {
         super.viewDidLoad()
         let urlPath = "https://jsonplaceholder.typicode.com/albums"
@@ -18,6 +20,16 @@ class ViewController: UIViewController {
                 print("JSON: \(json)")
             }
         }
+        
+        tableView.dataSource = self
+    }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return list.count
+    }
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell:UITableViewCell? = tableView.dequeueReusableCell(withIdentifier: "ListCell")
+        cell?.textLabel?.text = list[indexPath.row]
+        return cell!
     }
 
     override func didReceiveMemoryWarning() {
