@@ -19,6 +19,7 @@ class ViewController: UIViewController,UITableViewDataSource {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("Hello")
         let urlPath = "https://jsonplaceholder.typicode.com/albums"
         Alamofire.request(urlPath).responseJSON { response in
             if let json = response.result.value {
